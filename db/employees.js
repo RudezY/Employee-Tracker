@@ -50,10 +50,10 @@ try {
     name : "manager",
     message: "Who is the employee's manager?",
     choices: [
-         ...employees.map(employee => {
+         ...employees.map((e) => {
         return {
-            value: employee.id,
-            name : `${employee.firstName} ${employee.lastName}`
+            value: e.id,
+            name : `${e.first_name} ${e.last_name}`
         };
 }),
 {
@@ -65,7 +65,7 @@ try {
 
 
 ])
- await db.query(`INSERT into employee (first_name, last_name, role_id) VALUES ( "${firstName}", "${lastName}," "${role}", "${manager}") `)
+ await db.query(`INSERT into employee (first_name, last_name, role_id, manager_id) VALUES ("${firstName}", "${lastName}", "${role}", "${manager}") `)
  const newEmployees = await viewEmployees()
  return newEmployees
 }catch (err) {
